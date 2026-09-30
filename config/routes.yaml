@@ -9,3 +9,7 @@
 
 controllers:
     resource: routing.controllers
+
+about:
+    path: /about
+    controller: App\Controller\DefaultController::about
