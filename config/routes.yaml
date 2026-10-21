@@ -38,3 +38,8 @@ greeting:
 contacts:
     path: /contacts
     controller: App\Controller\DefaultController::contacts
+
+# doctrine exercise 3: the message in the url is saved as a new announcement
+new_announcement:
+    path: /new_announcement/{message}
+    controller: App\Controller\DefaultController::newAnnouncement

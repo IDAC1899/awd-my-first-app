@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Announcement;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -87,5 +89,21 @@ class DefaultController extends AbstractController
         return $this->render('default/contacts.html.twig', [
             'contacts' => $contacts
         ]);
+    }
+
+    // doctrine exercise 3: creates an announcement with the message from the url and the current time
+    public function newAnnouncement(
+        string $message,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $announcement = new Announcement();
+        $announcement->setMessage($message);
+        $announcement->setTimestamp(new \DateTime());
+
+        // persist() schedules the insert, flush() runs it on the database
+        $entityManager->persist($announcement);
+        $entityManager->flush();
+
+        return new Response('Announcement saved: ' . $message);
     }
 }
