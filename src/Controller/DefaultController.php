@@ -126,4 +126,16 @@ class DefaultController extends AbstractController
             'announcement' => $announcement,
         ]);
     }
+
+    // doctrine exercise 4b: gets every announcement in the table
+    public function allAnnouncements(
+        EntityManagerInterface $entityManager
+    ): Response {
+        $announcements = $entityManager
+            ->getRepository(Announcement::class)->findAll();
+
+        return $this->render('default/all_announcements.html.twig', [
+            'announcements' => $announcements,
+        ]);
+    }
 }

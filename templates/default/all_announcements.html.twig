@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Announcements{% endblock %}
+
+{% block body %}
+    <h2>All Announcements</h2>
+    <table border="1">
+        <tr><th>ID</th><th>Message</th><th>Timestamp</th></tr>
+        {% for announcement in announcements %}
+            <tr>
+                <td>{{ announcement.id }}</td>
+                <td>{{ announcement.message }}</td>
+                <td>{{ announcement.timestamp|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        {% else %}
+            <tr><td colspan="3">No announcements found.</td></tr>
+        {% endfor %}
+    </table>
+{% endblock %}

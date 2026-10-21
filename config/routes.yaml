@@ -44,6 +44,12 @@ new_announcement:
     path: /new_announcement/{message}
     controller: App\Controller\DefaultController::newAnnouncement
 
+# doctrine exercise 4a: {id} is the id of the announcement to show
 show_announcement:
     path: /announcement/{id}
     controller: App\Controller\DefaultController::showAnnouncement
+
+# doctrine exercise 4b: lists every announcement
+all_announcements:
+    path: /announcements
+    controller: App\Controller\DefaultController::allAnnouncements
