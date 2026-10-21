@@ -1,0 +1,10 @@
+{% extends 'default/layout.html.twig' %}
+
+{% block title %}
+    Hello
+{% endblock %}
+
+{% block content %}
+    {# twig escapes name automatically, so html typed into the url is shown as text, not run #}
+    <h2>Hello {{ name }}</h2>
+{% endblock %}

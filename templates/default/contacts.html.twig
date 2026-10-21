@@ -1,0 +1,22 @@
+{% extends 'default/layout.html.twig' %}
+
+{% block title %}
+    Contacts
+{% endblock %}
+
+{% block content %}
+    <h2>Contacts</h2>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        {# each contact is one inner array, so contact.name and contact.email read its two keys #}
+        {% for contact in contacts %}
+            <tr>
+                <td>{{ contact.name }}</td>
+                <td>{{ contact.email }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

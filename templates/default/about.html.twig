@@ -1,0 +1,27 @@
+{% extends 'default/layout.html.twig' %}
+
+{% block title %}
+    About
+{% endblock %}
+
+{% block content %}
+    <h2>About Page</h2>
+    {# asset() points to public/images/logo.png #}
+    <img src="{{ asset('images/logo.png') }}"
+         alt="Application logo"
+         width="150">
+    <p>
+        About page – produced using my first Twig template.
+    </p>
+
+    <h3>Team Members</h3>
+    {# length filter counts how many items are in the team array #}
+    <p>Number of team members: {{ team|length }}</p>
+    <ul>
+        {# loop through the team array sent from the controller #}
+        {% for member in team %}
+            {# upper filter turns each name into capitals #}
+            <li>{{ member|upper }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

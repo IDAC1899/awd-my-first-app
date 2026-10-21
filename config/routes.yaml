@@ -7,9 +7,34 @@
 # To list all registered routes, run the following command:
 #   bin/console debug:router
 
+# loads the #[Route] attributes first, so /hello/world (exercise 1) is matched before /hello/{name}
 controllers:
     resource: routing.controllers
 
 about:
     path: /about
     controller: App\Controller\DefaultController::about
+
+# exercise 2: {name} is a wildcard, any text in that part of the url is accepted
+hello_name:
+    path: /hello/{name}
+    controller: App\Controller\DefaultController::helloName
+
+# exercise 3: \d means exactly one digit, so /increment/12 does not match and gives a 404
+increment:
+    path: /increment/{number}
+    controller: App\Controller\DefaultController::increment
+    requirements:
+        number: '\d'
+
+# exercise 4: the | means "or", so only hello, hi or welcome are allowed as the salutation
+greeting:
+    path: /greet/{salutation}/{name}
+    controller: App\Controller\DefaultController::greeting
+    requirements:
+        salutation: 'hello|hi|welcome'
+
+# exercise 5
+contacts:
+    path: /contacts
+    controller: App\Controller\DefaultController::contacts

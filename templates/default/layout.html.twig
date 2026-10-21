@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# path() builds each link from the route name, so links still work if a url changes #}
+    <nav>
+        <a href="/">Home</a> |
+        <a href="{{ path('about') }}">About</a> |
+        <a href="{{ path('hello_world') }}">Hello</a> |
+        <a href="{{ path('hello_name', {name: 'Isa'}) }}">Hello Isa</a> |
+        <a href="{{ path('increment', {number: 5}) }}">Increment 5</a> |
+        <a href="{{ path('greeting', {salutation: 'welcome', name: 'Isa'}) }}">Greeting</a> |
+        <a href="{{ path('contacts') }}">Contacts</a>
+    </nav>
+    <hr>
+
+    {% block content %}
+    {% endblock %}
+{% endblock %}

@@ -2,14 +2,90 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 
-class DefaultController
+class DefaultController extends AbstractController
 {
-    public function about()
+    public function about(): Response
     {
-        return new Response(
-            'About page – produced by my first Symfony controller'
+        // list of team members to show on the about page
+        $team = array(
+            "Andrei",
+            "Kingsley",
+            "Julie",
+            "Kacper",
+            "Rebecca",
+            "Junaid",
+            "Jesse",
+            "Oliver",
+            "Nathan"
         );
+
+        // pass the team array to twig under the name team
+        return $this->render('default/about.html.twig', [
+            'team' => $team
+        ]);
+    }
+
+    // exercise 1: a static route set with a php attribute instead of routes.yaml
+    #[Route('/hello/world', name: 'hello_world')]
+    public function helloAction(): Response
+    {
+        return $this->render('default/hello.html.twig');
+    }
+
+    // exercise 2: {name} in routes.yaml is passed in here as $name
+    public function helloName(string $name): Response
+    {
+        return $this->render('default/hello_name.html.twig', [
+            'name' => $name
+        ]);
+    }
+
+    // exercise 3: routes.yaml only lets one digit (0-9) through, so $number is always 0 to 9
+    public function increment(int $number): Response
+    {
+        $result = $number + 1;
+
+        return $this->render('default/increment.html.twig', [
+            'result' => $result
+        ]);
+    }
+
+    // exercise 4: the salutation can only be hello, hi or welcome, the name can be anything
+    public function greeting(string $salutation, string $name): Response
+    {
+        return $this->render('default/greeting.html.twig', [
+            'salutation' => $salutation,
+            'name' => $name
+        ]);
+    }
+
+    // exercise 5: a two-dimensional array, each contact is its own array with a name and email
+    public function contacts(): Response
+    {
+        $contacts = [
+            [
+                'name' => 'Jane Smith',
+                'email' => 'jane@smith.com'
+            ],
+            [
+                'name' => 'John Smith',
+                'email' => 'john@smith.com'
+            ],
+            [
+                'name' => 'Bill Gates',
+                'email' => 'bill@microsoft.com'
+            ]
+        ];
+
+        // exercise 6: sends the array to the profiler's debug panel instead of printing it on the page
+        dump($contacts);
+
+        return $this->render('default/contacts.html.twig', [
+            'contacts' => $contacts
+        ]);
     }
 }
