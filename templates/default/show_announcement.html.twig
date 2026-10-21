@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Announcement{% endblock %}
+
+{% block body %}
+    <h2>Announcement</h2>
+    <p><strong>Message:</strong> {{ announcement.message }}</p>
+    <p><strong>Timestamp:</strong>
+        {{ announcement.timestamp|date('Y-m-d H:i:s') }}</p>
+{% endblock %}

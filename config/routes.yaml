@@ -43,3 +43,7 @@ contacts:
 new_announcement:
     path: /new_announcement/{message}
     controller: App\Controller\DefaultController::newAnnouncement
+
+show_announcement:
+    path: /announcement/{id}
+    controller: App\Controller\DefaultController::showAnnouncement

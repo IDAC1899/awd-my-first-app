@@ -106,4 +106,24 @@ class DefaultController extends AbstractController
 
         return new Response('Announcement saved: ' . $message);
     }
+
+    // doctrine exercise 4a: finds one announcement by its id
+    public function showAnnouncement(
+        int $id,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $announcement = $entityManager
+            ->getRepository(Announcement::class)->find($id);
+
+        // no row with that id, so show a 404 page
+        if (!$announcement) {
+            throw $this->createNotFoundException(
+                'No announcement found for id ' . $id
+            );
+        }
+
+        return $this->render('default/show_announcement.html.twig', [
+            'announcement' => $announcement,
+        ]);
+    }
 }
